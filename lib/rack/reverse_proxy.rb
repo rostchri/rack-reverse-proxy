@@ -68,7 +68,7 @@ module Rack
           end
         end
 
-        body = matcher.post_process_body(rackreq,headers,body)
+        body = matcher.post_process_body(body)
 
         [res.code, create_response_headers(res), [body]]
       }
@@ -167,7 +167,7 @@ module Rack
       end
     end
 
-    def post_process_body(rackreq,headers,body)
+    def post_process_body(body)
       @body_modifier.nil? ? body : @body_modifier.call(body)
     end
 
