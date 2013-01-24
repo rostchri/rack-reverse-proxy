@@ -37,7 +37,7 @@ module Rack
         session.verify_mode = OpenSSL::SSL::VERIFY_NONE
       end
       session.start { |http|
-        puts "Reverse Request Headers: #{headers.inspect}"
+        #puts "Reverse Request Headers: #{headers.inspect}"
         m = rackreq.request_method
         case m
         when "GET", "HEAD", "DELETE", "OPTIONS", "TRACE"
