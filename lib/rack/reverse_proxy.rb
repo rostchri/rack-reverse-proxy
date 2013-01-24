@@ -167,7 +167,7 @@ module Rack
       end
     end
 
-    def post_process_body(body)
+    def post_process_body(rackreq,headers,body)
       @body_modifier.nil? ? body : @body_modifier.call(body)
     end
 
