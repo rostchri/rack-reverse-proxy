@@ -68,7 +68,7 @@ module Rack
           end
         end
 
-        body = matcher.post_process_body(body)
+        body = matcher.post_process_body(rackreq,header,body)
 
         [res.code, create_response_headers(res), [body]]
       }
