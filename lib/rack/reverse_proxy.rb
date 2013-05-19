@@ -21,6 +21,7 @@ module Rack
       env.each { |key, value|
         if key =~ /HTTP_(.*)/ and not value.nil? and not value.empty?
           headers[$1] = value
+          #headers[$1.gsub('_', '-')] = value
         end
       }
       headers['HOST'] = uri.host if all_opts[:preserve_host]
@@ -36,8 +37,10 @@ module Rack
         # DO NOT DO THIS IN PRODUCTION !!!
         session.verify_mode = OpenSSL::SSL::VERIFY_NONE
       end
+      headers["USER-AGENT"] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5"
+      headers['REFERER']="linkdecrypter.com"
       session.start { |http|
-        #puts "Reverse Request Headers: #{headers.inspect}"
+        puts "Reverse Request Headers: #{headers.inspect}"
         m = rackreq.request_method
         case m
         when "GET", "HEAD", "DELETE", "OPTIONS", "TRACE"
